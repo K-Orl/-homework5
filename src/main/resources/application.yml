@@ -1,0 +1,16 @@
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: karinaorlova656@gmail.com
+    password: "tetn ufry vaha flod"
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+      mail.smtp.starttls.required: true
+      mail.smtp.connectiontimeout: 15000
+      mail.smtp.timeout: 15000
+      mail.smtp.writetimeout: 15000
+
+app:
+  sendTestMail: false
