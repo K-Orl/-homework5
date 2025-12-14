@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/users")
 @Tag(name = "Users", description = "API для управления пользователями")
@@ -17,10 +19,18 @@ public class UserController {
         this.userService = userService;
     }
 
+    // ================= GET =================
+    @Operation(summary = "Получить список пользователей (тест)")
+    @GetMapping
+    public List<String> getAllUsers() {
+        // Возвращаем тестовые данные
+        return List.of("Alice", "Bob", "Charlie");
+    }
+
+    // ================= POST =================
     @Operation(summary = "Создать пользователя")
     @PostMapping("/create")
     public EntityModel<String> createUser(@RequestParam String email) {
-
         userService.createUser(email);
 
         EntityModel<String> model = EntityModel.of("CREATE событие отправлено");
@@ -36,10 +46,10 @@ public class UserController {
         return model;
     }
 
+    // ================= DELETE =================
     @Operation(summary = "Удалить пользователя")
     @DeleteMapping("/delete")
     public EntityModel<String> deleteUser(@RequestParam String email) {
-
         userService.deleteUser(email);
 
         EntityModel<String> model = EntityModel.of("DELETE событие отправлено");
